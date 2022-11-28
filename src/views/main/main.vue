@@ -43,6 +43,7 @@
           }"
         >
           Content
+          <!-- <component :is="currentTab"></component> -->
         </a-layout-content>
       </a-layout>
     </a-layout>

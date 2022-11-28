@@ -20,3 +20,10 @@ export function accountUserRequest(id) {
     url: USER_INFO + id
   })
 }
+
+//用户菜单请求
+export function getRoleMenus(roleId) {
+  return newRequest.get({
+    url: USER_MENU + roleId + '/menu'
+  })
+}

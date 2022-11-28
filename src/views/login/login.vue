@@ -53,11 +53,10 @@ export default defineComponent({
     const formState = reactive({
       username: "",
       password: "",
-      remember: true,
+      remember: false,
     });
     // console.log(process.env.NODE_ENV);
     const onFinish = (values) => {
-      store.dispatch("loginModule/accountLoginAction", { ...formState });
       console.log("Success:", values);
     };
     const onFinishFailed = (errorInfo) => {
@@ -96,7 +95,7 @@ export default defineComponent({
     right: 300px;
     top: 200px;
     .form {
-      margin: 100px auto;
+      margin: 100px 100px 100px 20px;
       width: 400px;
     }
   }

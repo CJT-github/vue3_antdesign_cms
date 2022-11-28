@@ -1,7 +1,7 @@
 import {Button,Form,Input,Checkbox,Layout,Menu} from 'ant-design-vue'
 
 
-const components = [Button,Form.Item,Input.Password,Input,Checkbox,
+const components = [Button,Form,Form.Item,Input.Password,Input,Checkbox,
   Layout,Layout.Footer,Layout.Content,Layout.Header,Layout.Sider,Menu,Menu.Item]
 
 

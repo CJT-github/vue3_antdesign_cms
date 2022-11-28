@@ -1,5 +1,5 @@
 import router from '@/router'
-import { accountLoginRequest,accountUserRequest } from '@/service/login/login'
+import { accountLoginRequest,accountUserRequest,getRoleMenus } from '@/service/login/login'
 import localCache from '@/utils/localCache'
 
 const loginModule = {
@@ -13,14 +13,14 @@ const loginModule = {
     }
   },
   mutations: {
-    changeToken(state,payload) {
-      state.token = payload.token
+    changeToken(state,token) {
+      state.token = token
     },
-    changeUserInfo(state,payload) {
-      state.userInfo = payload.userInfo
+    changeUserInfo(state,userData) {
+      state.userInfo = userData
     },
-    changeUserMenus(state,payload) {
-      state.userMenus = payload.userMenus
+    changeUserMenus(state,menuResult) {
+      state.userMenus = menuResult
     },
     changePermissionList(state,payload) {
       state.permissionList = payload.permissionList
@@ -31,17 +31,29 @@ const loginModule = {
     //登录信息
      const loginResult = await accountLoginRequest(payload)
      const {id,token} = loginResult.data.data
-     console.log(token)
+    //  console.log(token)
      context.commit("changeToken",token)
      //缓存token
      localCache.setCache('token',token)
      //用户信息
      const userResult = await accountUserRequest(id)
      const userData = userResult.data.data
-     console.log(userData)
+    //  console.log(userData)
+     context.commit("changeUserInfo",userData)
+     localCache.setCache('userInfo',userData)
+     //获取菜单
+     const roleId = userData.role.id
+     const menuRes = await  getRoleMenus(roleId)
+     console.log(menuRes)
+     const menuResult = menuRes.data
+     context.commit('changeUserMenus',menuResult)
+     localCache.setCache('userMenus',menuResult)
+    //获取权限信息
+     
      //路由跳转
      router.push('/main')
     }
+
   }
 }
 
