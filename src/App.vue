@@ -14,7 +14,4 @@ export default {
 };
 </script>
 
-<style lang="less">
-.app {
-}
-</style>
+<style lang="less"></style>

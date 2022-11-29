@@ -106,3 +106,66 @@ class newRequest {
 export default new newRequest(baseURL,timeout)
 ~~~
 
+#### 4、login处理
+
+~~~
+//获取token
+     const loginResult = await accountLoginRequest(payload)
+     const {id,token} = loginResult.data.data
+    //  console.log(token)
+     context.commit("changeToken",token)
+     //缓存token
+     localCache.setCache('token',token)
+     
+//用户信息
+     const userResult = await accountUserRequest(id)
+     const userData = userResult.data.data
+    //  console.log(userData)
+     context.commit("changeUserInfo",userData)
+     localCache.setCache('userInfo',userData)
+     
+//获取菜单
+     const roleId = userData.role.id
+     const menuRes = await  getRoleMenus(roleId)
+     const menuResult = menuRes.data
+     context.commit('changeUserMenus',menuResult)
+     localCache.setCache('userMenus',menuResult)
+     
+//获取权限信息
+     const permission = mapMenuToPermissions(menuResult)
+     context.commit('changePermissionList',permission)
+
+//路由跳转首页
+     router.push('/main')
+~~~
+
+#### 5、方法封装
+
+~~~
+//用户菜单映射封装
+
+//处理用户权限信息
+export function mapMenuToPermissions(userMenus) {
+  const permissionList = []
+  const userMenusArray = userMenus.data
+  //这里采用了闭包
+  function _mapMenuToPermissions(userMenusArray) {
+    for(const menu of userMenusArray) {
+      if(menu.type === 1 || menu.type === 2) {
+        _mapMenuToPermissions(menu.children ?? [])
+      } else {
+        permissionList.push(menu.permission)
+      }
+    }
+  }
+  _mapMenuToPermissions(userMenusArray)
+  return permissionList
+}
+~~~
+
+#### 6、主页侧边栏处理
+
+~~~
+//需要拿到菜单信息，方案：菜单只考虑二级显示，路由动态添加
+~~~
+

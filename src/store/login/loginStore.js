@@ -1,6 +1,7 @@
 import router from '@/router'
 import { accountLoginRequest,accountUserRequest,getRoleMenus } from '@/service/login/login'
 import localCache from '@/utils/localCache'
+import {mapMenuToPermissions} from '@/utils/map-menu'
 
 const loginModule = {
   namespaced: true,
@@ -22,8 +23,8 @@ const loginModule = {
     changeUserMenus(state,menuResult) {
       state.userMenus = menuResult
     },
-    changePermissionList(state,payload) {
-      state.permissionList = payload.permissionList
+    changePermissionList(state,permissionList) {
+      state.permissionList = permissionList
     }
   },
   actions: {
@@ -49,11 +50,13 @@ const loginModule = {
      context.commit('changeUserMenus',menuResult)
      localCache.setCache('userMenus',menuResult)
     //获取权限信息
+     const permission = mapMenuToPermissions(menuResult)
+     context.commit('changePermissionList',permission)
+     //获取所有信息
      
      //路由跳转
      router.push('/main')
     }
-
   }
 }
 

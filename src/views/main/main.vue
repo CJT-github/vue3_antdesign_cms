@@ -2,21 +2,46 @@
   <div class="main">
     <a-layout>
       <!-- 侧边栏 -->
-      <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+      <a-layout-sider
+        v-model:collapsed="collapsed"
+        :trigger="null"
+        collapsible
+        collapsedWidth="120px"
+      >
         <div class="logo" />
-        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
-          <a-menu-item key="1">
-            <user-outlined />
-            <span>nav 1</span>
-          </a-menu-item>
-          <a-menu-item key="2">
-            <video-camera-outlined />
-            <span>nav 2</span>
-          </a-menu-item>
-          <a-menu-item key="3">
-            <upload-outlined />
-            <span>nav 3</span>
-          </a-menu-item>
+        <a-menu
+          mode="inline"
+          v-model:selectedKeys="selectedKeys2"
+          v-model:openKeys="openKeys"
+          style="height: 100%"
+        >
+          <a-sub-menu key="sub1">
+            <template #title>
+              <span> subnav 1 </span>
+            </template>
+            <a-menu-item key="1">option1</a-menu-item>
+            <a-menu-item key="2">option2</a-menu-item>
+            <a-menu-item key="3">option3</a-menu-item>
+            <a-menu-item key="4">option4</a-menu-item>
+          </a-sub-menu>
+          <a-sub-menu key="sub2">
+            <template #title>
+              <span> subnav 2 </span>
+            </template>
+            <a-menu-item key="5">option5</a-menu-item>
+            <a-menu-item key="6">option6</a-menu-item>
+            <a-menu-item key="7">option7</a-menu-item>
+            <a-menu-item key="8">option8</a-menu-item>
+          </a-sub-menu>
+          <a-sub-menu key="sub3">
+            <template #title>
+              <span> subnav 3 </span>
+            </template>
+            <a-menu-item key="9">option9</a-menu-item>
+            <a-menu-item key="10">option10</a-menu-item>
+            <a-menu-item key="11">option11</a-menu-item>
+            <a-menu-item key="12">option12</a-menu-item>
+          </a-sub-menu>
         </a-menu>
       </a-layout-sider>
       <a-layout>
@@ -70,6 +95,9 @@ export default defineComponent({
     return {
       selectedKeys: ref(["1"]),
       collapsed: ref(false),
+      selectedKeys1: ref(["2"]),
+      selectedKeys2: ref(["1"]),
+      openKeys: ref(["sub1"]),
     };
   },
 });
