@@ -1,15 +1,18 @@
 class cacheFZ {
   setCache(key,value) {
-    window.localStorage.setItem(key,value)
+    window.localStorage.setItem(key,JSON.stringify(value))
   }
   getCache(key) {
-  window.localStorage.getItem(key)
+    const data = window.localStorage.getItem(key)
+    if(data) {
+      return JSON.parse(data)
+    }
   }
   deleteCache(key) {
-    window.localStorage.removeItem(key)
+    return window.localStorage.removeItem(key)
   }
   clearCache() {
-    window.localStorage.clearCache()
+    return window.localStorage.clearCache()
   }
 }
 

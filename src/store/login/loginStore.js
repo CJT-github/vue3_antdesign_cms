@@ -1,7 +1,7 @@
 import router from '@/router'
 import { accountLoginRequest,accountUserRequest,getRoleMenus } from '@/service/login/login'
 import localCache from '@/utils/localCache'
-import {mapMenuToPermissions} from '@/utils/map-menu'
+import {mapMenuToPermissions,getMenuTemplatePath} from '@/utils/map-menu'
 
 const loginModule = {
   namespaced: true,
@@ -45,17 +45,41 @@ const loginModule = {
      //获取菜单
      const roleId = userData.role.id
      const menuRes = await  getRoleMenus(roleId)
-     console.log(menuRes)
-     const menuResult = menuRes.data
+     const menuResult = menuRes.data.data
      context.commit('changeUserMenus',menuResult)
      localCache.setCache('userMenus',menuResult)
     //获取权限信息
      const permission = mapMenuToPermissions(menuResult)
      context.commit('changePermissionList',permission)
      //获取所有信息
-     
+
+     //动态绑定路由
+     const routes = getMenuTemplatePath(menuResult)
+     router.addRoute(routes)
      //路由跳转
      router.push('/main')
+    },
+    //用于用户刷新网页时，vuex重置，导致数据为null问题
+    //vuex只保存在浏览器堆栈内，无法做到持久化存储
+    uploadAction({commit}) {
+      const token = localCache.getCache("token")
+      if(token) {
+        commit("changeToken",token)
+      } else {
+        router.push('/')
+      }
+      const userData = localCache.getCache('userInfo')
+      if(userData) {
+        commit("changeUserInfo",userData)
+      } else {
+        router.push('/')
+      }
+      const menuResult = localCache.getCache('userMenus')
+      if(menuResult) {
+        commit('changeUserMenus',menuResult)
+      } else {
+        router.push('/')
+      }
     }
   }
 }
