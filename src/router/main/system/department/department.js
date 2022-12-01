@@ -1,4 +1,4 @@
-const department = () => import('@/router/main/system/department/department')
+const department = () => import('@/views/main/system/department/department.vue')
 
 export default {
   path: '/main/system/department',

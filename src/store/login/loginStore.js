@@ -55,7 +55,10 @@ const loginModule = {
 
      //动态绑定路由
      const routes = getMenuTemplatePath(menuResult)
-     router.addRoute(routes)
+     routes.forEach((item) => {
+      router.addRoute('main',item)
+     })
+     
      //路由跳转
      router.push('/main')
     },
@@ -77,9 +80,16 @@ const loginModule = {
       const menuResult = localCache.getCache('userMenus')
       if(menuResult) {
         commit('changeUserMenus',menuResult)
+        //动态绑定路由
+        const routes = getMenuTemplatePath(menuResult)
+        routes.forEach((item) => {
+          // console.log(item)
+          router.addRoute('main',item)
+        })
       } else {
         router.push('/')
       }
+      
     }
   }
 }

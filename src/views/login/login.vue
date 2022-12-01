@@ -85,7 +85,7 @@ export default defineComponent({
   position: relative;
   .index_img {
     width: 100%;
-    height: 936px;
+    height: 100vh;
   }
   .login-form {
     background-color: rgba(0, 0, 0, 0.3);

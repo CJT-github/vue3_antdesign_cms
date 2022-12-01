@@ -10,7 +10,9 @@ export function getMenuTemplatePath(useMenus) {
   const roleFile = require.context('@/router/main',true,/\.js$/);
   roleFile.keys().forEach((filePath) => {
     //获取文件内容
+    // console.log(filePath);
     const routeModule = require('@/router/main' + filePath.split('.')[1])
+    console.log(routeModule);
     allRoutes.push(routeModule.default)
   })
   //获取可以点击的url

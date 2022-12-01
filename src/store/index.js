@@ -22,7 +22,6 @@ const store = createStore({
   })
 
   export function updateLoadAction() {
-    console.log("================")
     store.dispatch('loginModule/uploadAction')  
   }
 

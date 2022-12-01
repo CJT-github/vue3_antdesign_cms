@@ -1,4 +1,4 @@
-const chart = () => import('@/router/main/story/chart/chart')
+const chart = () => import('@/views/main/story/chart/chart.vue')
 
 export default {
   path: '/main/story/chat',

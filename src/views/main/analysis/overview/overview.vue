@@ -1,13 +1,14 @@
 <template>
-  <div></div>
+  <div>核心技术</div>
 </template>
 
 <script>
 export default {
+  name: "overview",
   setup() {
     return {};
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

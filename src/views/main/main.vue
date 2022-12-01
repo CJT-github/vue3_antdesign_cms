@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <a-layout>
+    <a-layout style="min-height: 100vh">
       <!-- 侧边栏 -->
       <a-layout-sider
         v-model:collapsed="collapsed"
@@ -33,7 +33,13 @@
             minHeight: '280px',
           }"
         >
-          Content
+          <router-view v-slot="{ Component }">
+            <transition>
+              <keep-alive include="chart">
+                <component :is="Component"></component>
+              </keep-alive>
+            </transition>
+          </router-view>
           <!-- <component :is="currentTab"></component> -->
         </a-layout-content>
       </a-layout>

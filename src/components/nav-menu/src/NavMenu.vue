@@ -3,42 +3,29 @@
     <div class="logo" />
     <a-menu
       mode="inline"
-      v-model:selectedKeys="selectedKeys2"
+      v-model:selectedKeys="selectedKeys"
       v-model:openKeys="openKeys"
       style="height: 100%"
     >
       <template v-for="menu in userMenu" :key="menu.id">
-        <template v-if="menu.id == 38 || menu.id == 41">
+        <template v-if="menu.type === 1">
           <a-sub-menu :key="'sub' + menu.id">
             <template #title>
               <span>{{ menu.name }}</span>
             </template>
             <template v-for="cmenu in menu.children" :key="cmenu.id">
               <div>
-                <a-menu-item :key="'menu' + cmenu.id">{{
-                  cmenu.name
-                }}</a-menu-item>
+                <a-menu-item
+                  :key="'menu' + cmenu.id"
+                  @click="menuItemClic(cmenu.url)"
+                  >{{ cmenu.name }}</a-menu-item
+                >
               </div>
             </template>
           </a-sub-menu>
         </template>
         <template v-else>
-          <template v-for="cmenu in menu.children" :key="cmenu.id">
-            <template v-if="cmenu">
-              <a-sub-menu :key="'sub' + cmenu.id">
-                <template #title>
-                  <span>{{ cmenu.name }}</span>
-                </template>
-                <template v-for="menu in cmenu.children" :key="menu.id">
-                  <template v-if="menu">
-                    <a-menu-item :key="'menu' + menu.id">{{
-                      menu.name
-                    }}</a-menu-item></template
-                  >
-                </template>
-              </a-sub-menu></template
-            >
-          </template>
+          <a-menu-item :key="'menu' + menu.id">{{ menu.name }}</a-menu-item>
         </template>
       </template>
     </a-menu>
@@ -48,18 +35,23 @@
 <script>
 import { computed, defineComponent, ref } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 export default defineComponent({
   setup() {
+    const router = useRouter();
     //菜单选项
     const store = useStore();
-    const userMenu = store.state.loginModule.userMenus;
-    console.log(store);
+    const userMenu = computed(() => store.state.loginModule.userMenus);
+    // console.log(userMenu);
+    //点击时跳转
+    const menuItemClic = (url) => {
+      router.push(url);
+    };
     return {
-      selectedKeys: ref(["1"]),
-      selectedKeys1: ref(["2"]),
-      selectedKeys2: ref(["1"]),
-      openKeys: ref(["sub1"]),
+      selectedKeys: ref(["39"]),
+      openKeys: ref(["sub38"]),
       userMenu,
+      menuItemClic,
     };
   },
 });

@@ -1,13 +1,14 @@
 <template>
-  <div></div>
+  <div>用户管理</div>
 </template>
 
 <script>
 export default {
+  name: "user",
   setup() {
     return {};
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

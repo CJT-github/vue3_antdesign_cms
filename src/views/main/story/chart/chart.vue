@@ -1,13 +1,14 @@
 <template>
-  <div></div>
+  <div>你的故事</div>
 </template>
 
 <script>
 export default {
+  name: "chart",
   setup() {
     return {};
   },
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="less" scoped></style>

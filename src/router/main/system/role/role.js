@@ -1,4 +1,4 @@
-const role = ()  => import('@/router/main/system/role/role')
+const role = ()  => import('@/views/main/system/role/role.vue')
 
 export default {
   path: '/main/system/role',
