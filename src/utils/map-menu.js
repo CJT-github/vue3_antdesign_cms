@@ -12,7 +12,7 @@ export function getMenuTemplatePath(useMenus) {
     //获取文件内容
     // console.log(filePath);
     const routeModule = require('@/router/main' + filePath.split('.')[1])
-    console.log(routeModule);
+    // console.log(routeModule);
     allRoutes.push(routeModule.default)
   })
   //获取可以点击的url
@@ -32,7 +32,7 @@ export function getMenuTemplatePath(useMenus) {
     }
   }
   findRouteFun(useMenus)
-  console.log(routes)
+  // console.log(routes)
   return routes
 }
 

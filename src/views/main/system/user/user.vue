@@ -1,9 +1,15 @@
 <template>
-  <div>用户管理</div>
+  <div class="user">
+    <user-body></user-body>
+  </div>
 </template>
 
 <script>
+import userBody from "./component/userbody/userBody.vue";
 export default {
+  components: {
+    userBody,
+  },
   name: "user",
   setup() {
     return {};
@@ -11,4 +17,4 @@ export default {
 };
 </script>
 
-<style lang="less" scoped></style>
+<style lang="scss" scoped></style>

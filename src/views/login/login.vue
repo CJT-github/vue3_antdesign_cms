@@ -66,6 +66,7 @@ export default defineComponent({
     console.log(store.state.name);
     const submitAccount = function () {
       store.dispatch("loginModule/accountLoginAction", { ...formState });
+      store.dispatch("userModule/getUserListAction", { offset: 0, size: 10 });
     };
     return {
       formState,

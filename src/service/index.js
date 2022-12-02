@@ -15,7 +15,7 @@ class newRequest {
   request(config) {
     //请求拦截
     this.instance.interceptors.request.use((config) => {
-      const token = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImNvZGVyd2h5Iiwicm9sZSI6eyJpZCI6MSwibmFtZSI6Iui2hee6p-euoeeQhuWRmCJ9LCJpYXQiOjE2NjkyNzM4NDgsImV4cCI6MTY3MTg2NTg0OH0.v-itO5ieiBVCrsCg5JxdYC5cYpws1uTIgKw7IbsUNVucThNb0lHzCuxnjeCvb4gqlTswUJQTSN01o1iNDmGC_plhCrdx4Xk3PprPzMj2jbO9RZV2zxjU2IAnFtFJXTuDoikRVXXkCve8ifr0sdP-3EZWoWi-HRP23EvoPg-Y-bQ'
+      const token = localCache.getCache('token')
       if(token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
