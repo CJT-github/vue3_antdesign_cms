@@ -1,74 +1,59 @@
+import { formUtcString } from "@/utils/timeForMate";
+
 const columns = [
   {
-    title: '商品全称',
+    title: '用户名',
     width: 100,
     dataIndex: 'name',
     key: 'name',
     fixed: 'left',
+    align: 'center'
   },
   {
-    title: '商品描述',
+    title: '真实姓名',
     width: 100,
-    dataIndex: 'age',
-    key: 'age',
+    dataIndex: 'realname',
+    key: 'realname',
     fixed: 'left',
+    align: 'center'
   },
   {
-    title: '原价',
-    dataIndex: 'address',
-    key: '1',
+    title: '手机号码',
+    dataIndex: 'cellphone',
+    key: 'cellphone',
     width: 150,
-  },
-  {
-    title: '现价',
-    dataIndex: 'address',
-    key: '2',
-    width: 150,
-  },
-  {
-    title: '描述',
-    dataIndex: 'address',
-    key: '3',
-    width: 150,
+    align: 'center'
   },
   {
     title: '状态',
-    dataIndex: 'address',
-    key: '4',
+    dataIndex: 'enable',
+    key: 'enable',
     width: 150,
+    align: 'center'
   },
   {
-    title: '预览图',
+    title: '创建时间',
+    dataIndex: 'createAt',
+    key: 'createAt',
+    width: 150,
+    customRender: (createAt) => {return formUtcString(createAt.value,null)},
+    align: 'center'
+  },
+  {
+    title: '更新时间',
+    dataIndex: 'updateAt',
+    key: 'updateAt',
+    width: 150,
+    customRender: (updateAt) => {return formUtcString(updateAt.value,null)},
+    align: 'center'
+  },
+  {
+    title: '操作',
     dataIndex: 'address',
     key: '5',
     width: 150,
-  },
-  {
-    title: 'Column 6',
-    dataIndex: 'address',
-    key: '6',
-    width: 150,
-  },
-  {
-    title: 'Column 7',
-    dataIndex: 'address',
-    key: '7',
-    width: 150,
-  },
-  {
-    title: 'Column 8',
-    dataIndex: 'address',
-    key: '8',
-  },
-  {
-    title: 'Action',
-    key: 'operation',
-    fixed: 'right',
-    width: 100,
-    slots: {
-      customRender: 'action',
-    },
-  },
+    align: 'center'
+  }
 ];
 
 export default columns

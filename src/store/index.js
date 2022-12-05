@@ -24,7 +24,10 @@ const store = createStore({
   })
 
   export function updateLoadAction() {
-    store.dispatch('loginModule/uploadAction')  
+    //刷新的时候，对vuex再次赋值
+    store.dispatch('loginModule/uploadAction')
+    //缓存所有信息
+    store.dispatch('userModule/getUserListAction')  
   }
 
 export default store
