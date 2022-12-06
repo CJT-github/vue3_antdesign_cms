@@ -244,6 +244,42 @@ export function mapMenuToPermissions(userMenus) {
 #### 8、用户管理模块
 
 ~~~
+//用户列表渲染
+//用户列表状态渲染
+  {
+    title: '状态',
+    dataIndex: 'enable',
+    key: 'enable',
+    width: 150,
+    align: 'center',
+    dataIndex: 'enable'
+  },
+  =============================================
+        <template v-slot:bodyCell="{ column, record, index }">
+        <template v-if="column.dataIndex == 'enable'">
+          <div v-if="record.enable == 1">
+            <span
+              style="
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: blue;
+              "
+            ></span>
+          </div>
+          <div v-else>
+            <span
+              style="
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: red;
+              "
+            ></span>
+          </div>
+        </template>
 ~~~
 
 #### 9、utc时间格式处理

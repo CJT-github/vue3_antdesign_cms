@@ -1,6 +1,15 @@
 import { formUtcString } from "@/utils/timeForMate";
 
 const columns = [
+  // {
+  //   width: 80,
+  //   dataIndex: 'id',
+  //   key: 'id',
+  //   fixed: 'left',
+  //   align: 'center',
+  //   filterMultiple: true,
+  //   dataIndex: 'id'
+  // },
   {
     title: '用户名',
     width: 100,
@@ -29,7 +38,8 @@ const columns = [
     dataIndex: 'enable',
     key: 'enable',
     width: 150,
-    align: 'center'
+    align: 'center',
+    dataIndex: 'enable'
   },
   {
     title: '创建时间',
