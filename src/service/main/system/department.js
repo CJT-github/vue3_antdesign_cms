@@ -1,10 +1,10 @@
 import newRequest from '@/service'
 
-const DEPARTMENT_LIST = '/department'
+const DEPARTMENT_LIST = '/department/list'
 export function getDepartmentList(data) {
-  return newRequest.get({
+  return newRequest.post({
     url: DEPARTMENT_LIST, 
-    params: {
+    data: {
       ...data
     }
   })

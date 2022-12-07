@@ -1,12 +1,20 @@
 <template>
-  <div>部门管理</div>
+  <div>
+    <department-body></department-body>
+  </div>
 </template>
 
 <script>
+import departmentBody from "./component/departmentBody/departmentBody.vue";
 export default {
   name: "department",
+  components: {
+    departmentBody,
+  },
   setup() {
-    return {};
+    return {
+      departmentBody,
+    };
   },
 };
 </script>

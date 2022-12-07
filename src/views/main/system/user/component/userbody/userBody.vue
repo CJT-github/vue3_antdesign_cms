@@ -44,7 +44,7 @@
 <script>
 import columns from "./config";
 import { useStore } from "vuex";
-import { computed, ref } from "@vue/runtime-core";
+import { computed, ref } from "vue";
 
 export default {
   setup() {
@@ -55,17 +55,13 @@ export default {
     const rowSelection = ref({
       checkStrictly: true,
       onChange: (selectedRowKeys, selectedRows) => {
-        // console.log(
-        //   `all_id: ${selectedRowKeys}`,
-        //   "all_message: ",
-        //   selectedRows
-        // );
+        // console.log(selectedRowKeys);
       },
       onSelect: (record, selected, selectedRows) => {
-        // console.log(record, selected, selectedRows);
+        // console.log(record);
       },
       onSelectAll: (selected, selectedRows, changeRows) => {
-        // console.log(selected, selectedRows, changeRows);
+        // console.log(changeRows);
       },
     });
 
