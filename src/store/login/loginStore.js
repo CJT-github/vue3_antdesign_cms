@@ -86,6 +86,8 @@ const loginModule = {
           // console.log(item)
           router.addRoute('main',item)
         })
+            //获取权限信息
+          commit('changePermissionList',mapMenuToPermissions(menuResult))
       } else {
         router.push('/')
       }

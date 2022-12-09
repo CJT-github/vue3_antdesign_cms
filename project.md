@@ -243,6 +243,14 @@ export function mapMenuToPermissions(userMenus) {
 #### 7、权限处理
 
 ~~~
+import { useStore } from "vuex";
+
+export function usePermission(pageName,action) {
+  const store = useStore()
+  const permissionList = store.state.loginModule.permissionList
+  const permission = `system:${pageName}:${action}`
+  return !!permissionList.find((item) => item === permission)
+}
 ~~~
 
 #### 8、用户管理模块

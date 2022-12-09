@@ -34,6 +34,9 @@ class newRequest {
   post(config) {
     return this.request({...config,method: 'post'})
   }
+  patch(config) {
+    return this.request({...config,method: 'patch'})
+  }
 
 }
 

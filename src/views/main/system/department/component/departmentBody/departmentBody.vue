@@ -1,6 +1,11 @@
 <template>
   <div class="department-body">
-    <page-table :tableConfig="TableConfig" :data="data"></page-table>
+    <page-table
+      :tableConfig="TableConfig"
+      :data="data"
+      :pageName="pageName"
+      :usePermission="usePermission"
+    ></page-table>
   </div>
 </template>
 
@@ -18,8 +23,12 @@ export default {
   setup() {
     const store = useStore();
     const data = computed(() => store.state.departmentModule.departmentList);
+    const pageName = "department";
+    const usePermission = true;
     return {
       PageTable,
+      pageName,
+      usePermission,
       data,
       TableConfig,
     };

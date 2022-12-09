@@ -2,12 +2,12 @@
   <div class="page-table">
     <msi-table :="tableConfig" :data="data" v-model:page="pageName">
       <template #headerHandler>
-        <a-button>新建数据</a-button>
+        <a-button v-if="isCreate">新建数据</a-button>
       </template>
       <template #operation="slotProps">
         <div class="btn">
-          <a-button>删除</a-button>
-          <a-button>修改</a-button>
+          <a-button v-if="isDelete">删除</a-button>
+          <a-button v-if="isUpdate">修改</a-button>
         </div>
       </template>
     </msi-table>
@@ -17,6 +17,7 @@
 <script>
 import MsiTable from "@/comment-ui/table-ui/MsiTable.vue";
 import { ref } from "@vue/reactivity";
+import { usePermission } from "@/hook/permission";
 export default {
   name: "PageTable",
   props: {
@@ -28,15 +29,34 @@ export default {
       type: Array,
       require: true,
     },
+    pageName: {
+      type: String,
+      default: "",
+    },
+    usePermission: {
+      type: Boolean,
+      default: true,
+    },
   },
   components: {
     MsiTable,
   },
   setup(props, { emit }) {
+    //权限处理
+    const isQuery = usePermission(props.pageName, "query");
+    const isUpdate = usePermission(props.pageName, "update");
+    const isCreate = usePermission(props.pageName, "create");
+    const isDelete = usePermission(props.pageName, "delete");
+    //数据处理
+
     const pageName = ref({ pageSize: 10, current: 1 });
     return {
       MsiTable,
       pageName,
+      isDelete,
+      isQuery,
+      isUpdate,
+      isCreate,
     };
   },
 };

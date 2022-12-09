@@ -31,6 +31,7 @@ const store = createStore({
     //缓存所有信息
     store.dispatch('userModule/getUserListAction') 
     store.dispatch('departmentModule/getDepartmentListAction') 
+  
   }
 
 export default store
