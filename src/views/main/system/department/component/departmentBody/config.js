@@ -37,8 +37,8 @@ const TableConfig = {
     },
     {
       title: '操作',
-      dataIndex: 'address',
-      key: '5',
+      dataIndex: 'operation',
+      key: 'operation',
       width: 150,
       align: 'center'
     }

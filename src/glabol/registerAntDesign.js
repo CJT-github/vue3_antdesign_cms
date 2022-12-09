@@ -1,8 +1,8 @@
-import {Button,Form,Input,Checkbox,Layout,Menu,Card,Table,Space,Switch} from 'ant-design-vue'
+import {Button,Form,Input,Checkbox,Layout,Menu,Card,Table,Space,Switch,Pagination} from 'ant-design-vue'
 
 
 const components = [Button,Form,Form.Item,Input.Password,Input,Checkbox,
-  Layout,Layout.Footer,Layout.Content,Layout.Header,Layout.Sider,Menu,Menu.Item,Menu.SubMenu,Card,Table,Space,Switch]
+  Layout,Layout.Footer,Layout.Content,Layout.Header,Layout.Sider,Menu,Menu.Item,Menu.SubMenu,Card,Table,Space,Switch,Pagination]
 
 
 export default function(app) {
