@@ -18,6 +18,7 @@
 import MsiTable from "@/comment-ui/table-ui/MsiTable.vue";
 import { ref } from "@vue/reactivity";
 import { usePermission } from "@/hook/permission";
+import { watch } from "@vue/runtime-core";
 export default {
   name: "PageTable",
   props: {
@@ -47,7 +48,14 @@ export default {
     const isUpdate = usePermission(props.pageName, "update");
     const isCreate = usePermission(props.pageName, "create");
     const isDelete = usePermission(props.pageName, "delete");
-    //数据处理
+
+    //当点击分页时
+    const pageInfo = ref({ pageSize: 10, current: 1 });
+    watch(pageInfo, () => {
+      getDataList;
+    });
+    //数据申请
+    const getDataList = function () {};
 
     const pageName = ref({ pageSize: 10, current: 1 });
     return {

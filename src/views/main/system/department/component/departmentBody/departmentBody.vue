@@ -22,7 +22,7 @@ export default {
   },
   setup() {
     const store = useStore();
-    const data = computed(() => store.state.departmentModule.departmentList);
+    const data = computed(() => store.state.departmentList);
     const pageName = "department";
     const usePermission = true;
     return {

@@ -49,7 +49,7 @@ import { computed, ref } from "vue";
 export default {
   setup() {
     const store = useStore();
-    const data = computed(() => store.state.userModule.userList);
+    const data = computed(() => store.state.userList);
 
     //处理全选、多选
     const rowSelection = ref({
