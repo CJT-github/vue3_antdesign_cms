@@ -10,6 +10,33 @@
           <a-button v-if="isUpdate">修改</a-button>
         </div>
       </template>
+      <template #enable="slotProps">
+        <!-- 处理状态 -->
+        <template v-if="slotProps.column.dataIndex == 'enable'">
+          <div v-if="slotProps.record.enable == 1">
+            <span
+              style="
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: blue;
+              "
+            ></span>
+          </div>
+          <div v-else>
+            <span
+              style="
+                display: inline-block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: red;
+              "
+            ></span>
+          </div>
+        </template>
+      </template>
     </msi-table>
   </div>
 </template>
@@ -48,6 +75,7 @@ export default {
     const isUpdate = usePermission(props.pageName, "update");
     const isCreate = usePermission(props.pageName, "create");
     const isDelete = usePermission(props.pageName, "delete");
+    // console.log(isQuery, isUpdate, isCreate, isDelete);
 
     //当点击分页时
     const pageInfo = ref({ pageSize: 10, current: 1 });
@@ -55,7 +83,11 @@ export default {
       getDataList;
     });
     //数据申请
-    const getDataList = function () {};
+    const getDataList = function (queryInfo) {
+      if (!isQuery && props.usePermission) {
+        return;
+      }
+    };
 
     const pageName = ref({ pageSize: 10, current: 1 });
     return {

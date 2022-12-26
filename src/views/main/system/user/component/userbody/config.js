@@ -1,15 +1,8 @@
 import { formUtcString } from "@/utils/timeForMate";
 
-const columns = [
-  // {
-  //   width: 80,
-  //   dataIndex: 'id',
-  //   key: 'id',
-  //   fixed: 'left',
-  //   align: 'center',
-  //   filterMultiple: true,
-  //   dataIndex: 'id'
-  // },
+const TableConfig = {
+  title: "用户列表",
+  columns: [
   {
     title: '用户名',
     width: 100,
@@ -59,11 +52,15 @@ const columns = [
   },
   {
     title: '操作',
-    dataIndex: 'address',
-    key: '5',
+    dataIndex: 'operation',
+    key: 'operation',
     width: 150,
     align: 'center'
   }
-];
+],
+scrollXY: {x:1500,y:1000},
+rowKeyId: 'id',
+rowSelectionBl: true
+};
 
-export default columns
+export default TableConfig

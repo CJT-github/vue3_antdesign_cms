@@ -17,12 +17,9 @@ import { useStore } from "vuex";
 export default {
   name: "DepartmentBody",
   components: { PageTable },
-  componentsL: {
-    PageTable,
-  },
   setup() {
     const store = useStore();
-    const data = computed(() => store.state.departmentList);
+    const data = computed(() => store.state.mainModule.departmentList);
     const pageName = "department";
     const usePermission = true;
     return {
