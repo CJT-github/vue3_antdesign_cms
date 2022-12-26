@@ -84,9 +84,7 @@ export default {
     });
     //数据申请
     const getDataList = function (queryInfo) {
-      if (!isQuery && props.usePermission) {
-        return;
-      }
+      if (!isQuery && props.usePermission) return;
     };
 
     const pageName = ref({ pageSize: 10, current: 1 });
