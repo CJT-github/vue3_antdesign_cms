@@ -56,3 +56,5 @@ export function mapMenuToPermissions(userMenus) {
   _mapMenuToPermissions(userMenusArray)
   return permissionList
 }
+
+export {firstMenu}

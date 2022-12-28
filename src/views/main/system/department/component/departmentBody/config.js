@@ -4,6 +4,14 @@ const TableConfig = {
   title: "部门列表",
   columns: [
     {
+      title: '序号',
+      width: 50,
+      dataIndex: 'count',
+      key: 'count',
+      fixed: 'left',
+      align: 'center'
+    },
+    {
       title: '部门id',
       width: 100,
       dataIndex: 'id',

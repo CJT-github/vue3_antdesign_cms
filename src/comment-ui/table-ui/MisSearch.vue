@@ -8,35 +8,40 @@
       @finish="onFinish"
     >
       <a-row :gutter="24">
-        <template v-for="i in 10" :key="i">
+        <template v-for="(item, i) in searchConfig.columns" :key="i">
           <a-col v-show="expand || i <= 6" :span="8">
             <a-form-item
-              :name="`field-${i}`"
-              :label="`field-${i}`"
-              :rules="[{ required: true, message: 'input something' }]"
+              :name="item.item_name"
+              :label="item.label"
+              :rules="item.rules"
             >
-              <a-input
-                v-model:value="formState[`field-${i}`]"
-                placeholder="placeholder"
-              ></a-input>
+              <template v-if="item.timePicker ? true : false">
+                <a-range-picker
+                  v-model:value="formState[item.item_name]"
+                  show-time
+                  format="YYYY-MM-DD HH:mm:ss"
+                  value-format="YYYY-MM-DD HH:mm:ss"
+                />
+              </template>
+              <template v-else>
+                <a-input
+                  v-model:value="formState[item.item_name]"
+                  placeholder="placeholder"
+                ></a-input>
+              </template>
             </a-form-item>
           </a-col>
         </template>
       </a-row>
       <a-row>
         <a-col :span="24" style="text-align: right">
-          <a-button type="primary" html-type="submit">Search</a-button>
+          <a-button type="primary" html-type="submit">搜索</a-button>
           <a-button style="margin: 0 8px" @click="() => formRef.resetFields()"
-            >Clear</a-button
+            >清除</a-button
           >
           <a style="font-size: 12px" @click="expand = !expand">
-            <template v-if="expand">
-              <UpOutlined />
-            </template>
-            <template v-else>
-              <DownOutlined />
-            </template>
-            Collapse
+            <template v-if="expand"> <UpOutlined />&nbsp;关闭</template>
+            <template v-else> <DownOutlined />&nbsp;展开</template>
           </a>
         </a-col>
       </a-row>
@@ -46,7 +51,14 @@
 <script>
 import { defineComponent, reactive, ref } from "vue";
 import { DownOutlined, UpOutlined } from "@ant-design/icons-vue";
+
 export default defineComponent({
+  props: {
+    searchConfig: {
+      type: Object,
+      required: true,
+    },
+  },
   components: {
     DownOutlined,
     UpOutlined,

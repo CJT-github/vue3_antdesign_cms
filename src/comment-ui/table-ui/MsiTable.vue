@@ -175,11 +175,12 @@ export default {
   }
 }
 .footer {
-  position: relative;
+  // position: relative;
   margin-top: 10px;
   .pagination {
-    position: absolute;
-    right: 10px;
+    // position: absolute;
+    // right: 10px;
+    float: right;
   }
 }
 </style>

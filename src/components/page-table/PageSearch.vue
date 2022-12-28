@@ -1,6 +1,6 @@
 <template>
   <div class="page-search">
-    <mis-search></mis-search>
+    <mis-search :searchConfig="searchConfig"></mis-search>
   </div>
 </template>
 
@@ -8,6 +8,12 @@
 import MisSearch from "@/comment-ui/table-ui/MisSearch.vue";
 export default {
   name: "pageSearch",
+  props: {
+    searchConfig: {
+      type: Object,
+      required: true,
+    },
+  },
   components: { MisSearch },
   setup() {
     return {};

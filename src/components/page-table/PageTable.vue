@@ -4,6 +4,10 @@
       <template #headerHandler>
         <a-button v-if="isCreate">新建数据</a-button>
       </template>
+      <!-- 序列号 -->
+      <template #count="slotProps">
+        <div class="num">{{ slotProps.index + 1 }}</div>
+      </template>
       <template #operation="slotProps">
         <div class="btn">
           <a-button v-if="isDelete">删除</a-button>
