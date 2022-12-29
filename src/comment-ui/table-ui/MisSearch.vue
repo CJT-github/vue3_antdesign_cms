@@ -17,16 +17,17 @@
             >
               <template v-if="item.timePicker ? true : false">
                 <a-range-picker
-                  v-model:value="formState[item.item_name]"
+                  v-model:value="timeState[item.item_name]"
                   show-time
                   format="YYYY-MM-DD HH:mm:ss"
                   value-format="YYYY-MM-DD HH:mm:ss"
+                  :placeholder="item.placeholder"
                 />
               </template>
               <template v-else>
                 <a-input
                   v-model:value="formState[item.item_name]"
-                  placeholder="placeholder"
+                  :placeholder="item.placeholder"
                 ></a-input>
               </template>
             </a-form-item>
@@ -63,17 +64,20 @@ export default defineComponent({
     DownOutlined,
     UpOutlined,
   },
-  setup() {
+  setup(props) {
     const expand = ref(false);
     const formRef = ref();
     const formState = reactive({});
+    const timeState = reactive({});
     const onFinish = (values) => {
       console.log("Received values of form: ", values);
       console.log("formState: ", formState);
+      console.log("timeState", timeState);
     };
     return {
       formRef,
       formState,
+      timeState,
       expand,
       onFinish,
     };

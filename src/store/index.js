@@ -1,7 +1,5 @@
 import {createStore} from 'vuex'
 import loginModule from './login/loginStore'
-import userModule from './main/system/user'
-import departmentModule from './main/system/department'
 import mainModule from  './main/system/main'
 
 
@@ -26,8 +24,6 @@ const store = createStore({
     },
     modules: {
       loginModule,
-      userModule,
-      departmentModule,
       mainModule
     }
   })

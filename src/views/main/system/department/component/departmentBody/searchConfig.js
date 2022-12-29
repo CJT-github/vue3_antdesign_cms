@@ -1,21 +1,24 @@
 const searchConfig = {
   columns: [
     {
-      item_name:'department_name',
+      item_name:'name',
       label: '部门名称',
-      rules: [{}]
+      rules: [{}],
+      placeholder: "请输入部门名称"
     },
     {
-      item_name:'department_built',
+      item_name:'createAt',
       label: '创建时间',
       rules: [{}],
-      timePicker: true
+      timePicker: true,
+      placeholder: ["开始时间","结束时间"]
     },
     {
-      item_name:'department_update',
+      item_name:'updateAt',
       label: '更新时间',
       rules: [{}],
-      timePicker: true
+      timePicker: true,
+      placeholder: ["开始时间","结束时间"]
     }
   ]
 }
