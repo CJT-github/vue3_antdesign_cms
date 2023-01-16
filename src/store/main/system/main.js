@@ -18,20 +18,34 @@ const dataList = {
     }
   },
   actions: {
-      //获取部门列表信息
+      //
       //获取列表信息
-      async getDataList({commit},payload) {
-        
-      },
-      async getDepartmentListAction(context,payload) {
-        const departmentList = await getDepartmentList(payload)
-        context.commit("changeDepartmentList",departmentList.data.data.list)
-      },
-      //获取查询用户列表信息
-      async getUserListAction(context,payload) {
-        const userList = await getUserList(payload)
-        context.commit('changeUserList',userList.data.data.list)
+    async getDepartmentListAction(context,payload) {
+      const departmentList = await getDepartmentList(payload)
+      context.commit("changeDepartmentList",departmentList.data.data.list)
+    },
+    //获取查询用户列表信息
+    async getUserListAction(context,payload) {
+      const userList = await getUserList(payload)
+      context.commit('changeUserList',userList.data.data.list)
+    },
+
+    async getDataList({commit},payload) {
+      const pageName = payload.pageName;
+      const pageInfo = payload.pageInfo.value;
+      const data = {offset: pageInfo.current - 1,size: pageInfo.pageSize }
+      switch(pageName) {
+        case "users":
+          const userList = await getUserList(data)
+          commit('changeUserList',userList.data.data.list)
+          break;
+        case "department":
+          const departmentList = await getDepartmentList(data)
+          commit("changeDepartmentList",departmentList.data.data.list)
+          break;
       }
+    },
+
   },
   getter:{
 

@@ -1,6 +1,6 @@
 <template>
   <div class="page-table">
-    <msi-table :="tableConfig" :data="data" v-model:page="pageName">
+    <msi-table :="tableConfig" :data="data" v-model:page="pageInfo">
       <template #headerHandler>
         <a-button v-if="isCreate">新建数据</a-button>
       </template>
@@ -50,6 +50,8 @@ import MsiTable from "@/comment-ui/table-ui/MsiTable.vue";
 import { ref } from "@vue/reactivity";
 import { usePermission } from "@/hook/permission";
 import { watch } from "@vue/runtime-core";
+import { watchEffect, toRefs, toRef } from "vue";
+import store from "@/store";
 export default {
   name: "PageTable",
   props: {
@@ -75,26 +77,33 @@ export default {
   },
   setup(props, { emit }) {
     //权限处理
-    const isQuery = usePermission(props.pageName, "query");
-    const isUpdate = usePermission(props.pageName, "update");
-    const isCreate = usePermission(props.pageName, "create");
-    const isDelete = usePermission(props.pageName, "delete");
+    const pageName = props.pageName;
+    const isQuery = usePermission(pageName, "query");
+    const isUpdate = usePermission(pageName, "update");
+    const isCreate = usePermission(pageName, "create");
+    const isDelete = usePermission(pageName, "delete");
     // console.log(isQuery, isUpdate, isCreate, isDelete);
 
     //当点击分页时
     const pageInfo = ref({ pageSize: 10, current: 1 });
-    watch(pageInfo, () => {
-      getDataList;
-    });
+    watch(
+      pageInfo,
+      () => {
+        getDataList({ pageName, pageInfo });
+        console.log("触发分页");
+      },
+      { deep: true }
+    );
     //数据申请
     const getDataList = function (queryInfo) {
       if (!isQuery && props.usePermission) return;
+      store.dispatch("mainModule/getDataList", { ...queryInfo });
     };
+    getDataList({ pageName, pageInfo });
 
-    const pageName = ref({ pageSize: 10, current: 1 });
     return {
       MsiTable,
-      pageName,
+      pageInfo,
       isDelete,
       isQuery,
       isUpdate,

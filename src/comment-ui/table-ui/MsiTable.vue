@@ -44,6 +44,7 @@
           :page-size-options="pageSizeOptions"
           :total="total"
           show-size-changer
+          @change="change"
           @showSizeChange="onShowSizeChange"
         >
           <template #buildOptionText="props">
@@ -137,12 +138,17 @@ export default {
       }
     };
     //分页器处理
-    const pageSizeOptions = ref(["10", "20", "30"]);
+    const pageSizeOptions = ref(["5", "10", "30"]);
     const current = ref(props.page.current);
     const pageSizeRef = ref(props.page.pageSize);
     const total = ref(props.total);
     const onShowSizeChange = (current, pageSize) => {
-      console.log(current, pageSize);
+      // console.log(current, pageSize);
+      pageSizeRef.value = pageSize;
+    };
+    const change = (page, pageSize) => {
+      console.log(page, pageSize);
+      emit("update:page", { pageSize, current: page });
       pageSizeRef.value = pageSize;
     };
     return {
@@ -152,6 +158,7 @@ export default {
       pageSize: pageSizeRef,
       total,
       onShowSizeChange,
+      change,
     };
   },
 };
